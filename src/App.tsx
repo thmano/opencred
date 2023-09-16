@@ -1,7 +1,9 @@
+import { Header } from './modules/header/Header';
+
 function App() {
   return (
     <>
-      <div>teste</div>
+      <Header />
     </>
   );
 }
