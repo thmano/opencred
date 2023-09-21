@@ -58,7 +58,7 @@ export function Dimensions() {
               437.1 ha.
             </Text>
             <Text fontSize="8px" color="gray.500" fontWeight="700">
-              TOTAL
+              ARRENDADA
             </Text>
           </AreaContainer>
           <AreaContainer>
@@ -70,7 +70,7 @@ export function Dimensions() {
               437.1 ha.
             </Text>
             <Text fontSize="8px" color="gray.500" fontWeight="700">
-              TOTAL
+              PRÓPRIA
             </Text>
           </AreaContainer>
           <AreaContainer>
@@ -82,7 +82,7 @@ export function Dimensions() {
               437.1 ha.
             </Text>
             <Text fontSize="8px" color="gray.500" fontWeight="700">
-              TOTAL
+              PRODUTIVA
             </Text>
           </AreaContainer>
         </CardBody>
