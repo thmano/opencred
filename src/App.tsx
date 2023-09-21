@@ -1,9 +1,10 @@
 import { Header } from './modules/header/Header';
 
-function App() {
+export function App() {
   return (
     <>
       <Header />
+      Esta pagina ainda esta em construção...
     </>
   );
 }
