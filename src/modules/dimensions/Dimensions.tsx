@@ -1,19 +1,37 @@
 import { Card, CardBody, CardHeader, Icon, Text } from '@chakra-ui/react';
+import { useState } from 'react';
 import { FaRegUser, FaSeedling, FaUndo, FaUser } from 'react-icons/fa';
 
 import AreaIcon from '../../assets/areaIcon.svg';
 import { AreaContainer, ImageIconArea } from './style';
 export function Dimensions() {
+  const [hours, setHours] = useState(
+    `${new Date().getHours()} : ${new Date().getMinutes()} : ${new Date().getSeconds()} `,
+  );
+  const [day, setDay] = useState(
+    `${new Date().getDate()}/${new Date().getMonth() + 1} : ${new Date().getFullYear()} `,
+  );
+
+  function getData() {
+    setHours(`${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getSeconds()} `);
+    setDay(`${new Date().getDate()}/${new Date().getMonth() + 1}/${new Date().getFullYear()} `);
+  }
   return (
     <>
       <Card w="100%" mb="13px">
         <CardHeader display="flex" flexDirection="column" alignItems="end" textAlign="end">
-          <Icon fontSize="18px" color="gray.600" as={FaUndo} />
+          <Icon
+            onClick={() => getData()}
+            fontSize="18px"
+            color="gray.600"
+            as={FaUndo}
+            _hover={{ cursor: 'pointer', color: 'gray.900' }}
+          />
           <Text fontSize="12px" color="gray.600" fontWeight="400">
-            Atualizado às 23:34:23{' '}
+            Atualizado às {hours}
           </Text>
           <Text fontSize="12px" color="gray.600" fontWeight="400">
-            no dia 14/09/2022
+            no dia {day}
           </Text>
         </CardHeader>
         <CardBody display="flex">

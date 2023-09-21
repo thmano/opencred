@@ -14,6 +14,7 @@ import {
   Thead,
   Tr,
 } from '@chakra-ui/react';
+import { useContext } from 'react';
 import { FaCheckCircle } from 'react-icons/fa';
 import { FaHome, FaSeedling } from 'react-icons/fa';
 
@@ -21,22 +22,24 @@ import AreaIcon from '../../assets/areaIcon.svg';
 import { ChartBar } from '../../components/ChartBar';
 import { ChartLine } from '../../components/ChartLine';
 import { Mapa } from '../../components/Mapa';
+import { FarmContext } from '../../context/Farm/FarmContext';
 import { AreaContainer, ImageIconArea, SubTitle } from './style';
 
 export function DataFarm() {
+  const { name, location } = useContext(FarmContext);
   return (
     <Card>
       <Box display="flex">
         <CardBody maxW="30%" display="flex" flexDirection="column">
           <Text fontSize="18px" color="gray.600" fontWeight="700" mb="8px">
-            Fazenda Salto Alto
+            {name ? name : 'Nenhuma selecionada'}
           </Text>
           <SubTitle>Média Propriedade Produtiva</SubTitle>
           <Text fontSize="10px" color="gray.500" fontWeight="400" mb="11px">
             ROD BR 359 REGIÃO DO POSTO DA PÓLVORA + 6 KM ESQUERDA
           </Text>
           <Text fontSize="10px" color="gray.600" fontWeight="700" mb="32px">
-            ALCINÓPOLIS - MS
+            {location ? location : 'Nenhum selecionado'}
           </Text>
           <hr />
           <Text fontSize="12px" color="gray.600" fontWeight="400" mt="14px">

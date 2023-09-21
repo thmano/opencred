@@ -1,7 +1,8 @@
 import { Box, Card, CardBody, CardHeader, Icon, Image, Text } from '@chakra-ui/react';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { FaSquare, FaUndo, FaWindowMaximize } from 'react-icons/fa';
 
+import { FarmContext } from '../../context/Farm/FarmContext';
 import { CardFarmSelect, DescriptionFarm, RefreshRequestFarms } from './style';
 export function Farms() {
   const farms = [
@@ -10,34 +11,78 @@ export function Farms() {
       location: 'Belo Horizonte - MG',
       hectareTotais: '430',
       hectaresPlantil: '380',
+      latitude: '-20.1574045',
+      longitude: '-53.5029533',
     },
     {
-      name: 'Fazenda Salto Alto',
+      name: 'Fazenda da Barra - Soares & Cia',
       location: 'Belo Horizonte - MG',
       hectareTotais: '430',
       hectaresPlantil: '380',
+      latitude: '-26.2436321',
+      longitude: '-52.6538349',
     },
     {
-      name: 'Fazenda Salto Alto',
-      location: 'Belo Horizonte - MG',
+      name: 'FAZENDA GOSS',
+      location: 'Pato Branco - PR',
       hectareTotais: '430',
       hectaresPlantil: '380',
+      latitude: '-26.0531213',
+      longitude: '-52.6771593',
     },
     {
-      name: 'Fazenda Salto Alto',
-      location: 'Belo Horizonte - MG',
+      name: 'Agropecuária OMEL - Fazenda Guará',
+      location: 'Campio Grande - MS',
       hectareTotais: '430',
       hectaresPlantil: '380',
+      latitude: '-20.7953081',
+      longitude: '-54.1422707',
     },
     {
-      name: 'Fazenda Salto Alto',
-      location: 'Belo Horizonte - MG',
+      name: 'Fazenda Três Irmãos-Rota dos Butiazais',
+      location: 'Ribas do Rio Preto - MS',
       hectareTotais: '430',
       hectaresPlantil: '380',
+      latitude: '-30.6031211',
+      longitude: '-51.3927398',
     },
   ];
 
   const [active, setActive] = useState(0);
+
+  const { setName, setLocation, setHectareTotais, setHectaresPlantil, setLatitude, setLongitude } =
+    useContext(FarmContext);
+
+  function SelectFarm(
+    farm: {
+      name: string;
+      location: string;
+      hectareTotais: string;
+      hectaresPlantil: string;
+      latitude: string;
+      longitude: string;
+    },
+    index: number,
+  ) {
+    setActive(index);
+    setName(farm.name);
+    setLocation(farm.location);
+    setHectareTotais(farm.hectareTotais);
+    setHectaresPlantil(farm.hectaresPlantil);
+    setLatitude(farm.latitude);
+    setLongitude(farm.longitude);
+  }
+  const [hours, setHours] = useState(
+    `${new Date().getHours()} : ${new Date().getMinutes()} : ${new Date().getSeconds()} `,
+  );
+  const [day, setDay] = useState(
+    `${new Date().getDate()}/${new Date().getMonth() + 1} : ${new Date().getFullYear()} `,
+  );
+
+  function getData() {
+    setHours(`${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getSeconds()} `);
+    setDay(`${new Date().getDate()}/${new Date().getMonth() + 1}/${new Date().getFullYear()} `);
+  }
 
   return (
     <Card w="100%" mb="15px">
@@ -46,11 +91,17 @@ export function Farms() {
           Fazendas
         </Text>
         <RefreshRequestFarms>
-          <Icon fontSize="18px" color="gray.600" as={FaUndo} />
+          <Icon
+            onClick={() => getData()}
+            fontSize="18px"
+            color="gray.600"
+            as={FaUndo}
+            _hover={{ cursor: 'pointer', color: 'gray.900' }}
+          />
           <Text fontSize="12px" color="gray.600" fontWeight="400">
-            Atualizado às 23:34:23
+            Atualizado às {hours}
             <br />
-            no dia 14/09/2022
+            no dia {day}
           </Text>
         </RefreshRequestFarms>
       </CardHeader>
@@ -63,7 +114,7 @@ export function Farms() {
               }}
               ml="20px"
               key={index}
-              onClick={() => setActive(index)}
+              onClick={() => SelectFarm(farm, index)}
             >
               <CardFarmSelect className={active === index ? 'active' : ''}>
                 <Image

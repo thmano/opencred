@@ -1,30 +1,24 @@
 import { Button, ButtonGroup, Text } from '@chakra-ui/react';
 import { AuthenticationType } from 'azure-maps-control';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { AzureMap, AzureMapsProvider, IAzureMapOptions } from 'react-azure-maps';
 import styled from 'styled-components';
 
+import { FarmContext } from '../context/Farm/FarmContext';
+
 export function Mapa() {
   const [styleMap, setStyleMap] = useState('satellite_road_labels');
+
+  const { latitude, longitude } = useContext(FarmContext);
   const option: IAzureMapOptions = {
     authOptions: {
       authType: AuthenticationType.subscriptionKey,
       subscriptionKey: 'veuMgxBx0_-2Q-YzvihLE-1Jv-ZjSJdDV8UXORPTCMA',
     },
-    center: [-40.47, -20.75],
-    zoom: 3,
+    center: [longitude ? Number(longitude) : 0, latitude ? Number(latitude) : 0],
+    zoom: 16,
     view: 'Auto',
     style: styleMap,
-    atlas: {
-      layers: {
-        TileLayer: {
-          tileUrl:
-            'https://{azMapsDomain}/map/tile?api-version=2.0&tilesetId=microsoft.weather.radar.main&zoom=40&x=30&y=10',
-          opacity: 0.9,
-          tileSize: 256,
-        },
-      },
-    },
   };
 
   const MapaArea = styled.div``;

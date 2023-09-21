@@ -6,6 +6,7 @@ import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import App from './App.tsx';
+import { FarmContextProvider } from './context/Farm/FarmContext.tsx';
 import { DashboardFarms } from './pages/DashboardFarms.tsx';
 import { DashboardFinancial } from './pages/DashboardFinancial.tsx';
 
@@ -53,15 +54,16 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <ChakraProvider theme={theme}>
-      <Card fontFamily="standard" w="100%" h="200px" bg="green.900" px="28px" mb="90px">
-        <CardHeader>
-          <Text fontSize="12px" color="white.100">
-            Home - Central de clientes - Produtor João Ferreira
-          </Text>
-        </CardHeader>
-
-        <RouterProvider router={router} />
-      </Card>
+      <FarmContextProvider>
+        <Card fontFamily="standard" w="100%" h="200px" bg="green.900" px="28px" mb="90px">
+          <CardHeader>
+            <Text fontSize="12px" color="white.100">
+              Home - Central de clientes - Produtor João Ferreira
+            </Text>
+          </CardHeader>
+          <RouterProvider router={router} />
+        </Card>
+      </FarmContextProvider>
     </ChakraProvider>
   </React.StrictMode>,
 );

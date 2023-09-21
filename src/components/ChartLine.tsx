@@ -56,7 +56,7 @@ export const data = {
   datasets: [
     {
       type: 'line' as const,
-      borderColor: 'rgb(255, 99, 132)',
+      borderColor: '#000',
       backgroundColor: '#000',
       borderWidth: 2,
       fill: false,
